@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI w pracy – przewodnik Działu Nauki UŚ</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#002e5a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=PT+Mono&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --granat:#002e5a; --granat-ciemny:#002043; --granat-biznes:#003c73;
+  --granat-1:#38507b; --granat-2:#7380a4; --granat-3:#b5bbd1; --granat-4:#dfe2ec;
+  --bialy:#fff; --szary-pola:#e7e7e8; --szarosc-4:#ececec; --linia:#c6c6c6;
+  --zielony:#94c11f; --zolty:#fbb900; --bordo:#9b132a; --niebieski:#0095db;
+  --sans:"PT Sans","Trebuchet MS",Verdana,sans-serif; --mono:"PT Mono","Courier New",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);font-size:17px;line-height:1.55;color:var(--granat);background:var(--bialy);-webkit-text-size-adjust:100%}
+a{color:var(--granat-biznes)}
+h1,h2,h3{line-height:1.2;margin:0}
+h1{font-size:34px} h2{font-size:24px} h3{font-size:19px}
+p{margin:0 0 .7em}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--niebieski);outline-offset:2px}
+.w{max-width:1040px;margin:0 auto;padding:0 20px}
+
+header{background:var(--granat);color:var(--bialy)}
+.gora{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0 12px;flex-wrap:wrap}
+.marka{display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--bialy)}
+.marka img{height:40px;display:block;max-width:60vw;object-fit:contain}
+.marka [hidden]{display:none!important}
+.marka .us{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--granat-3);display:block}
+.marka .tyt{font-size:22px;font-weight:700;display:block;line-height:1.15}
+.marka .kreska{width:1px;align-self:stretch;background:#9d9c9c}
+.szukaj{flex:1 1 260px;max-width:420px;position:relative}
+.szukaj input{width:100%;font:inherit;padding:10px 38px 10px 12px;border:0;background:var(--bialy);color:var(--granat);border-radius:0}
+.szukaj input::placeholder{color:var(--granat-2)}
+.szukaj button{position:absolute;right:0;top:0;bottom:0;width:38px;border:0;background:none;color:var(--granat-1);font-size:20px;display:none}
+nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:thin}
+nav a{color:var(--bialy);text-decoration:none;padding:10px 14px;white-space:nowrap;font-size:16px;border-bottom:4px solid transparent}
+nav a:hover{background:var(--granat-ciemny)}
+nav a[aria-current=page]{border-bottom-color:var(--bialy);font-weight:700}
+
+main{padding:28px 0 64px;min-height:60vh}
+.lead{font-size:19px;color:var(--granat-1);max-width:62ch;margin:.5em 0 1.4em}
+.sekcja{margin-top:40px}
+.sekcja>h2{margin-bottom:14px}
+.okruszek{font-size:15px;margin-bottom:14px}
+.okruszek a{text-decoration:none}
+.okruszek a:hover{text-decoration:underline}
+
+.drzwi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.drzwi a{display:block;background:var(--granat);color:var(--bialy);text-decoration:none;padding:22px 20px 20px;min-height:150px}
+.drzwi a:hover{background:var(--granat-biznes)}
+.drzwi .nr{font-size:14px;color:var(--granat-3);letter-spacing:.06em;text-transform:uppercase}
+.drzwi strong{display:block;font-size:24px;line-height:1.15;margin:8px 0 8px}
+.drzwi span.o{font-size:16px;color:var(--granat-4)}
+.male{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+.male a{display:block;background:var(--szary-pola);text-decoration:none;color:var(--granat);padding:14px 20px}
+.male a:hover{background:var(--granat-4)}
+.male strong{display:block}
+.male span{font-size:15px;color:var(--granat-1)}
+
+.lista{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.kafel{display:flex;flex-direction:column;gap:8px;background:var(--szary-pola);padding:16px 18px;text-decoration:none;color:var(--granat)}
+.kafel:hover{background:var(--granat-4)}
+.kafel h3{font-size:19px}
+.kafel p{margin:0;font-size:15.5px;color:var(--granat-1)}
+.chipy{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
+.chip{display:inline-block;font-size:13.5px;line-height:1.3;padding:3px 9px;background:var(--bialy);color:var(--granat);white-space:nowrap}
+.kafel .chip.n{background:var(--bialy)}
+.chip.zielony{background:var(--zielony);color:var(--granat)}
+.chip.zolty{background:var(--zolty);color:var(--granat)}
+.chip.czerwony{background:var(--bordo);color:var(--bialy)}
+.chip.cel{background:var(--granat);color:var(--bialy)}
+.chip.inne{background:var(--granat-4);color:var(--granat)}
+.chip.rama{background:none;box-shadow:inset 0 0 0 1px var(--granat-1)}
+
+.filtry{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.filtry button{border:0;background:var(--szary-pola);padding:7px 14px;font-size:15.5px;border-radius:0}
+.filtry button:hover{background:var(--granat-4)}
+.filtry button[aria-pressed=true]{background:var(--granat);color:var(--bialy)}
+.pole-filtr{font:inherit;padding:8px 12px;border:1px solid var(--granat-2);border-radius:0;color:var(--granat);width:100%;max-width:420px;margin-bottom:12px;background:var(--bialy)}
+
+.dwa{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:32px;align-items:start}
+ol.kroki{margin:0;padding:0;list-style:none;counter-reset:k}
+ol.kroki li{counter-increment:k;position:relative;padding:0 0 12px 40px}
+ol.kroki li::before{content:counter(k);position:absolute;left:0;top:1px;width:26px;height:26px;background:var(--granat);color:var(--bialy);font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center}
+.ramka{background:var(--szary-pola);padding:14px 16px;margin-bottom:12px}
+.ramka h3{font-size:15px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.ramka p{margin:0}
+.ramka.pulapka{background:var(--bialy);box-shadow:inset 4px 0 0 var(--bordo),inset 0 0 0 1px var(--linia)}
+.ramka.pulapka h3{color:var(--bordo)}
+.ramka.kolor{background:var(--bialy);box-shadow:inset 0 0 0 1px var(--linia)}
+
+.pol{background:var(--granat-4);margin:0 0 14px}
+.pol-g{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 16px}
+.pol-g strong{font-size:15.5px;padding:7px 0}
+.pol-t{font-family:var(--mono);font-size:15px;line-height:1.6;padding:2px 16px 16px;white-space:pre-wrap;overflow-wrap:anywhere;margin:0}
+.pol-t mark{background:var(--bialy);color:var(--granat);padding:0 2px}
+.kop{border:0;background:var(--granat);color:var(--bialy);padding:7px 14px;font-size:15px;font-weight:700;white-space:nowrap;border-radius:0;min-width:104px}
+.kop:hover{background:var(--granat-biznes)}
+.kop.ok{background:var(--zielony);color:var(--granat)}
+
+.swiatla{display:grid;gap:14px}
+.swiatlo{display:grid;grid-template-columns:200px minmax(0,1fr)}
+.swiatlo .l{padding:16px 18px}
+.swiatlo .l strong{display:block;font-size:24px;line-height:1.1;margin-bottom:6px}
+.swiatlo .l span{font-size:15px;line-height:1.35;display:block}
+.swiatlo .p{background:var(--szary-pola);padding:14px 18px}
+.swiatlo ul{margin:0 0 8px;padding-left:20px}
+.swiatlo li{margin-bottom:4px}
+.swiatlo em{font-size:15.5px;color:var(--granat-1)}
+.swiatlo.zielony .l{background:var(--zielony)} .swiatlo.zolty .l{background:var(--zolty)} .swiatlo.czerwony .l{background:var(--bordo);color:var(--bialy)}
+.pary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.pary div{background:var(--granat);color:var(--bialy);padding:16px 20px}
+.pary strong{font-size:24px;display:block}
+ol.zawsze{margin:0;padding:0;list-style:none;counter-reset:z}
+ol.zawsze li{counter-increment:z;padding:12px 0 12px 46px;position:relative;border-top:1px solid var(--linia)}
+ol.zawsze li::before{content:counter(z);position:absolute;left:0;top:10px;font-size:30px;font-weight:700;line-height:1;color:var(--granat-2)}
+ol.zawsze strong{display:block}
+.alarm{background:var(--bordo);color:var(--bialy);padding:18px 20px}
+.alarm h2{margin-bottom:8px}
+.alarm ol{margin:0 0 12px;padding-left:22px}
+.alarm .kt{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.alarm .kt div{background:var(--bialy);color:var(--granat);padding:10px 14px;font-size:15.5px}
+.alarm .kt b{display:block}
+.alarm .kt code{font-family:var(--mono);font-size:15px}
+.syt{display:grid;grid-template-columns:150px minmax(0,1fr);gap:0 16px;padding:12px 0;border-top:1px solid var(--linia)}
+.syt p{margin:0}
+.syt .odp{color:var(--granat-1);font-size:16px;margin-top:2px}
+
+details{border-top:1px solid var(--linia)}
+details:last-of-type{border-bottom:1px solid var(--linia)}
+summary{cursor:pointer;padding:13px 34px 13px 0;position:relative;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:6px;top:8px;font-size:26px;font-weight:700;color:var(--granat-2)}
+details[open] summary::after{content:"–"}
+summary:hover{background:var(--szarosc-4)}
+.cecha{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4px 24px}
+.cecha .c{font-weight:700}
+.cecha .r::before{content:"→ ";color:var(--granat-2)}
+.wnetrze{padding:0 0 16px;max-width:75ch}
+.wnetrze p{color:var(--granat-1)}
+.tabgl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 24px;font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:var(--granat-1);padding-bottom:6px}
+.dz{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.dz>div{padding:16px 18px;background:var(--szary-pola)}
+.dz h3{margin-bottom:8px}
+.dz ul{margin:0;padding-left:20px}
+.dz .zle{background:var(--bialy);box-shadow:inset 0 0 0 1px var(--granat-2)}
+
+.piec{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.piec div{background:var(--granat);color:var(--bialy);padding:14px}
+.piec b{display:block;font-size:19px;line-height:1.2;margin-bottom:6px}
+.piec span{font-size:15px;color:var(--granat-4);line-height:1.4;display:block}
+.piec i{font-style:normal;font-size:14px;color:var(--granat-3)}
+.narz{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.narz>div{background:var(--szary-pola);padding:16px 18px}
+.narz h3{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;flex-wrap:wrap;margin-bottom:4px}
+.narz .konto{font-size:15px;color:var(--granat-1);margin-bottom:10px}
+.narz dl{margin:0}
+.narz dt{font-size:13.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--granat-1);margin-top:8px}
+.narz dd{margin:0;font-size:16px}
+.wynik{display:block;padding:12px 0;border-top:1px solid var(--linia);text-decoration:none;color:var(--granat)}
+.wynik:hover{background:var(--szarosc-4)}
+.wynik small{display:block;font-size:13.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--granat-1)}
+.wynik span{color:var(--granat-1);font-size:15.5px;display:block}
+.pusto{background:var(--szary-pola);padding:18px 20px}
+.stan{background:var(--szary-pola);padding:16px 20px}
+.stan ul{margin:6px 0 0;padding-left:20px}
+footer{background:var(--granat);color:var(--granat-3);font-size:14.5px;padding:20px 0 28px}
+footer p{margin:0;max-width:80ch}
+#brama{max-width:440px;margin:8vh auto 0;padding:0 20px}
+#brama form{background:var(--szary-pola);padding:24px}
+#brama h1{font-size:26px;margin-bottom:8px}
+#brama input{width:100%;font:inherit;padding:11px 12px;border:1px solid var(--granat-2);border-radius:0;color:var(--granat);margin:14px 0 12px;background:var(--bialy)}
+#brama button{border:0;background:var(--granat);color:var(--bialy);padding:11px 22px;font-weight:700;border-radius:0}
+#brama .blad{color:var(--bordo);font-weight:700;min-height:1.6em;margin:10px 0 0}
+body.zamkniete nav,body.zamkniete .szukaj,body.zamkniete main,body.zamkniete footer{display:none}
+body:not(.zamkniete) #brama{display:none}
+.spr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.spr div{background:var(--szary-pola);padding:12px 14px}
+.spr b{display:block}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+@media (max-width:820px){
+  body{font-size:16.5px} h1{font-size:28px}
+  .drzwi,.male,.lista,.dwa,.narz,.dz,.pary,.alarm .kt,.spr{grid-template-columns:minmax(0,1fr)}
+  .drzwi a{min-height:0}
+  .piec{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .swiatlo{grid-template-columns:minmax(0,1fr)}
+  .syt{grid-template-columns:minmax(0,1fr);gap:6px}
+  .cecha,.tabgl{grid-template-columns:minmax(0,1fr)}
+  .tabgl span:last-child{display:none}
+  .szukaj{max-width:none;flex-basis:100%}
+}
+@media print{header nav,.szukaj,.kop,.filtry,footer{display:none} details{break-inside:avoid} .pol,.ramka{break-inside:avoid}}
+</style>
+</head>
+<body class="zamkniete">
+<header>
+  <div class="w">
+    <div class="gora">
+      <a class="marka" href="#start" id="marka">
+        <img src="logo-us-biale.png" alt="Uniwersytet Śląski w Katowicach" id="logo">
+        <span class="kreska" id="kreska"></span>
+        <span><span class="us" id="us-tekst" hidden>Uniwersytet Śląski w Katowicach · Dział Nauki</span><span class="tyt">AI w pracy</span></span>
+      </a>
+      <div class="szukaj" role="search">
+        <label class="sr" for="q">Szukaj w przewodniku</label>
+        <input id="q" type="search" placeholder="Szukaj: protokół, PESEL, formuła…" autocomplete="off">
+        <button id="q-x" aria-label="Wyczyść wyszukiwanie">×</button>
+      </div>
+    </div>
+    <nav id="nav" aria-label="Sekcje przewodnika"></nav>
+  </div>
+</header>
+<div id="brama"><form id="brama-f">
+  <h1>Przewodnik Działu Nauki</h1>
+  <p>Podaj hasło otrzymane razem z linkiem. Na tym urządzeniu wpisuje się je tylko raz.</p>
+  <label class="sr" for="haslo">Hasło</label>
+  <input id="haslo" type="password" autocomplete="current-password" autocapitalize="off" placeholder="Hasło">
+  <button type="submit">Otwórz</button>
+  <p class="blad" id="brama-blad" role="alert"></p>
+</form></div>
+<main><div class="w" id="app"></div></main>
+<footer><div class="w"><p id="stopka"></p></div></footer>
+
+<script src="tresc.enc.js"></script>
+<script>
+(function(){
+"use strict";
+var T = null, app = document.getElementById("app"), q = document.getElementById("q");
+
+/* logo: jeśli obok strony nie ma pliku logo-us-biale.png, pokazujemy nazwę uczelni tekstem */
+var logo = document.getElementById("logo");
+function bezLogo(){ if(logo.parentNode){logo.remove();} document.getElementById("kreska").remove(); document.getElementById("us-tekst").hidden = false; }
+logo.addEventListener("error", bezLogo);
+if (logo.complete && logo.naturalWidth === 0) bezLogo();
+
+var SEKCJE = [
+  ["start","Start"],["zadania","Mam zadanie"],["kolory","Czy mogę to wkleić?"],
+  ["portret","Jak działa AI"],["polecenie","Dobre polecenie"],["narzedzia","Narzędzia"],["pytania","Pytania"]
+];
+var KOLOR = { zielony:"Zielone", zolty:"Żółte – konto UŚ", czerwony:"Czerwone – bez AI", cel:"Cel zakazany", inne:"Poza kolorami" };
+var DOSLOWNE = ["DO UZUPEŁNIENIA","DO SPRAWDZENIA","?","NAZWA","Zwrot","Konkurs","Edycja","ZFIN","Termin","Link","Imię","nazwa konkursu","termin","link do formularza","data promocji"];
+
+function e(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function pola(s){ return e(s).replace(/\[([^\]]+)\]/g, function(m,w){ return DOSLOWNE.indexOf(w)>-1 ? m : "<mark>"+m+"</mark>"; }); }
+function norm(s){ return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/ł/g,"l"); }
+function chipKolor(k){ return '<span class="chip '+k+'">'+KOLOR[k]+'</span>'; }
+function chipyZadania(z){
+  var h = z.narzedzie.map(function(n){ return '<span class="chip n">'+e(n)+'</span>'; }).join("");
+  h += z.przyszlosc ? '<span class="chip cel">Na razie tylko dane fikcyjne</span>' : chipKolor(z.kolor);
+  return h;
+}
+var POL = [];
+function polecenie(nazwa, tekst, bezKopii){
+  if (!bezKopii) POL.push(tekst);
+  return '<div class="pol"><div class="pol-g"><strong>'+e(nazwa)+'</strong>'+(bezKopii?'':'<button class="kop" data-i="'+(POL.length-1)+'">Kopiuj</button>')+'</div><pre class="pol-t">'+pola(tekst)+'</pre></div>';
+}
+function kafel(z){
+  return '<a class="kafel" href="#zad-'+z.id+'"><h3>'+e(z.tytul)+'</h3><p>'+e(z.skrot)+'</p><div class="chipy">'+chipyZadania(z)+'</div></a>';
+}
+
+/* ---------- widoki ---------- */
+var W = {};
+
+W.start = function(){
+  var m = T.meta;
+  return '<h1>'+e(m.tytul)+' – '+'przewodnik Działu Nauki'+'</h1>'+
+  '<p class="lead">Ściąga po szkoleniu: gotowe polecenia do skopiowania, zasady trzech kolorów i wyjaśnienia, dlaczego AI odpowiada tak, a nie inaczej.</p>'+
+  '<div class="drzwi">'+
+    '<a href="#zadania"><span class="nr">Wejście 1</span><strong>Mam zadanie</strong><span class="o">Przepisy krok po kroku z poleceniami do skopiowania</span></a>'+
+    '<a href="#kolory"><span class="nr">Wejście 2</span><strong>Czy mogę to wkleić?</strong><span class="o">Trzy kolory, pięć zasad i typowe sytuacje</span></a>'+
+    '<a href="#portret"><span class="nr">Wejście 3</span><strong>Jak działa AI</strong><span class="o">Portret współpracownika: cecha i reguła pracy</span></a>'+
+  '</div>'+
+  '<div class="male">'+
+    '<a href="#polecenie"><strong>Dobre polecenie</strong><span>Pięć pytań, przydatne zwroty i lista „zanim wyślesz”</span></a>'+
+    '<a href="#narzedzia"><strong>Narzędzia</strong><span>Które do czego i w jakim kolorze</span></a>'+
+    '<a href="#pytania"><strong>Pytania</strong><span>Krótkie odpowiedzi na najczęstsze wątpliwości</span></a>'+
+  '</div>'+
+  '<section class="sekcja"><h2>Najczęściej potrzebne</h2><div class="lista">'+T.zadania.slice(0,6).map(kafel).join("")+'</div>'+
+  '<p style="margin-top:14px"><a href="#zadania">Wszystkie zadania ('+T.zadania.length+') →</a></p></section>';
+};
+
+var filtrZad = "Wszystkie";
+W.zadania = function(){
+  var grupy = ["Wszystkie","Copilot","Gemini","Gemini Notebook","Excel i Word"];
+  function pasuje(z){
+    if (filtrZad==="Wszystkie") return true;
+    if (filtrZad==="Excel i Word") return z.narzedzie.some(function(n){return /Excel|Word|PowerPoint|Forms|Outlook/.test(n);});
+    if (filtrZad==="Gemini") return z.narzedzie.indexOf("Gemini")>-1;
+    return z.narzedzie.indexOf(filtrZad)>-1;
+  }
+  var l = T.zadania.filter(pasuje);
+  return '<h1>Mam zadanie</h1><p class="lead">Wybierz zadanie. W środku: narzędzie, kolor, kroki i gotowe polecenia. Podświetlone pola w nawiasach zastępujesz własną treścią.</p>'+
+  '<div class="filtry" data-f="zad">'+grupy.map(function(g){return '<button aria-pressed="'+(g===filtrZad)+'" data-v="'+g+'">'+g+'</button>';}).join("")+'</div>'+
+  '<div class="lista">'+l.map(kafel).join("")+'</div>'+
+  '<section class="sekcja"><div class="stan"><strong>Masz lepsze polecenie albo zadanie, którego tu brakuje?</strong><p style="margin:.4em 0 0">Napisz do mnie :)</p></div></section>';
+};
+
+function zadanie(id){
+  var z = T.zadania.filter(function(x){return x.id===id;})[0];
+  if (!z) return W.zadania();
+  return '<p class="okruszek"><a href="#zadania">← Wszystkie zadania</a></p>'+
+  '<h1>'+e(z.tytul)+'</h1><p class="lead">'+e(z.skrot)+'</p>'+
+  '<div class="dwa"><div>'+
+    '<div class="ramka kolor"><div class="chipy" style="padding:0 0 8px">'+chipyZadania(z)+'</div><p>'+e(z.kolorOpis)+'</p></div>'+
+    '<h2 style="margin:22px 0 12px">Krok po kroku</h2><ol class="kroki">'+z.kroki.map(function(k){return '<li>'+e(k)+'</li>';}).join("")+'</ol>'+
+    '<div class="ramka"><h3>Co sprawdzić</h3><p>'+e(z.sprawdz)+'</p></div>'+
+    '<div class="ramka pulapka"><h3>Pułapka</h3><p>'+e(z.pulapka)+'</p></div>'+
+  '</div><div>'+
+    '<h2 style="margin-bottom:12px">Polecenia</h2>'+z.polecenia.map(function(p){return polecenie(p.nazwa,p.tekst);}).join("")+
+    '<p style="font-size:15.5px;color:var(--granat-1)">Kolejne polecenia wklejaj w tej samej rozmowie. Zanim cokolwiek wyślesz dalej – sprawdź wynik.</p>'+
+  '</div></div>';
+}
+
+var filtrKol = "wszystkie", tekstKol = "";
+function sytuacjeHTML(){
+  var n = norm(tekstKol);
+  var l = T.kolory.sytuacje.filter(function(s){
+    return (filtrKol==="wszystkie"||s.kolor===filtrKol) && (!n || norm(s.t+" "+s.o).indexOf(n)>-1);
+  });
+  if (!l.length) return '<div class="pusto">Nie ma takiej sytuacji na liście. Zadaj sobie dwa pytania: gdzie i do czego – a w razie wątpliwości zapytaj przełożonego.</div>';
+  return l.map(function(s){return '<div class="syt"><div>'+chipKolor(s.kolor)+'</div><div><p>'+e(s.t)+'</p><p class="odp">'+e(s.o)+'</p></div></div>';}).join("");
+}
+W.kolory = function(){
+  var K = T.kolory, f = [["wszystkie","Wszystkie"],["zielony","Zielone"],["zolty","Żółte"],["czerwony","Czerwone"],["cel","Cel zakazany"],["inne","Poza kolorami"]];
+  return '<h1>Czy mogę to wkleić?</h1><p class="lead">'+e(K.wstep)+'</p>'+
+  '<div class="pary">'+K.dwaPytania.map(function(p){return '<div><strong>'+e(p.p)+'</strong>'+e(p.o)+'</div>';}).join("")+'</div>'+
+  '<section class="sekcja"><h2>Trzy kolory</h2><div class="swiatla">'+K.lista.map(function(k){
+    return '<div class="swiatlo '+k.kolor+'"><div class="l"><strong>'+e(k.nazwa)+'</strong><span>'+e(k.gdzie)+'</span></div><div class="p"><ul>'+k.punkty.map(function(p){return '<li>'+e(p)+'</li>';}).join("")+'</ul><em>'+e(k.uwaga)+'</em></div></div>';
+  }).join("")+'</div></section>'+
+  '<section class="sekcja"><h2>Sprawdź sytuację</h2>'+
+    '<label class="sr" for="fk">Szukaj sytuacji</label><input class="pole-filtr" id="fk" type="search" placeholder="np. PESEL, CV, tłumaczenie, nagranie" value="'+e(tekstKol)+'">'+
+    '<div class="filtry" data-f="kol">'+f.map(function(x){return '<button aria-pressed="'+(x[0]===filtrKol)+'" data-v="'+x[0]+'">'+x[1]+'</button>';}).join("")+'</div>'+
+    '<div id="syt">'+sytuacjeHTML()+'</div></section>'+
+  '<section class="sekcja"><h2>Pięć zasad „Zawsze”</h2><ol class="zawsze">'+K.zawsze.map(function(z){return '<li><strong>'+e(z.t)+'</strong>'+e(z.o)+'</li>';}).join("")+'</ol></section>'+
+  '<section class="sekcja"><div class="alarm"><h2>'+e(K.pomylka.tytul)+'</h2><ol>'+K.pomylka.kroki.map(function(k){return '<li>'+e(k)+'</li>';}).join("")+'</ol>'+
+    '<div class="kt">'+K.pomylka.kontakty.map(function(k){return '<div><b>'+e(k.co)+'</b>'+e(k.kto)+'<br><code>'+e(k.adres)+'</code></div>';}).join("")+'</div></div></section>';
+};
+
+W.portret = function(){
+  var P = T.portret;
+  return '<h1>Jak działa AI</h1><p class="lead">'+e(P.wstep)+'</p>'+
+  '<div class="dz"><div><h3>Zwykle bardzo dobrze</h3><ul>'+P.dobra.map(function(x){return '<li>'+e(x)+'</li>';}).join("")+'</ul></div>'+
+  '<div class="zle"><h3>Zwykle zawodnie</h3><ul>'+P.zawodna.map(function(x){return '<li>'+e(x)+'</li>';}).join("")+'</ul></div></div>'+
+  '<section class="sekcja"><h2>Portret współpracownika</h2><div class="tabgl"><span>Nasz współpracownik…</span><span>…więc my</span></div>'+
+  P.cechy.map(function(c){
+    return '<details><summary><div class="cecha"><span class="c">'+e(c.cecha)+'</span><span class="r">'+e(c.regula)+'</span></div></summary><div class="wnetrze"><p>'+e(c.opis)+'</p>'+(c.pol?polecenie("Wypróbuj",c.pol):"")+'</div></details>';
+  }).join("")+
+  '<p style="margin-top:18px;font-weight:700;font-size:19px">'+e(P.puenta)+'</p></section>';
+};
+
+W.polecenie = function(){
+  var P = T.polecenie;
+  return '<h1>Dobre polecenie</h1><p class="lead">'+e(P.wstep)+'</p>'+
+  '<div class="piec">'+P.piec.map(function(x,i){return '<div><i>'+(i+1)+'</i><b>'+e(x.p)+'</b><span>'+e(x.o)+'</span></div>';}).join("")+'</div>'+
+  '<p style="margin-top:18px;max-width:75ch">'+e(P.zasada)+'</p>'+
+  '<section class="sekcja"><h2>Słabe i dobre</h2><div class="dwa" style="grid-template-columns:minmax(0,1fr) minmax(0,2fr)"><div>'+polecenie("Słabe",P.przyklad.slabe,true)+'</div><div>'+polecenie("Dobre",P.przyklad.dobre)+'</div></div></section>'+
+  '<section class="sekcja"><h2>Zwroty, które warto mieć pod ręką</h2><p style="color:var(--granat-1)">Dopisz na końcu swojego polecenia albo wklej jako kolejną wiadomość.</p><div class="lista">'+P.zwroty.map(function(z){return polecenie(z.nazwa,z.tekst);}).join("")+'</div></section>'+
+  '<section class="sekcja"><h2>Pięć ruchów w każdym czacie</h2><ol class="zawsze">'+P.ruchy.map(function(r){return '<li><strong>'+e(r.t)+'</strong>'+e(r.o)+'</li>';}).join("")+'</ol></section>'+
+  '<section class="sekcja"><h2>Zanim wyślesz</h2><p style="color:var(--granat-1)">Odpowiadasz za każdy wynik. Tak sprawdzisz go najszybciej:</p><div class="spr">'+P.sprawdzanie.map(function(x){return '<div><b>'+e(x.t)+'</b>'+e(x.o)+'</div>';}).join("")+'</div></section>'+
+  '<section class="sekcja"><h2>Kiedy nie warto sięgać po AI</h2><ul style="margin:0;padding-left:22px;max-width:75ch">'+P.nieWarto.map(function(x){return '<li>'+e(x)+'</li>';}).join("")+'</ul></section>';
+};
+
+W.narzedzia = function(){
+  return '<h1>Narzędzia</h1><p class="lead">Na kontach UŚ mamy Copilota i Gemini – to domyślne narzędzia do pracy. Prywatne konta służą wyłącznie do materiałów zielonych.</p>'+
+  '<div class="narz">'+T.narzedzia.map(function(n){
+    var ch = n.kolor==="zolty" ? '<span class="chip zolty">Zielone i żółte</span>' : n.kolor==="zielony" ? '<span class="chip zielony">Tylko zielone</span>' : '';
+    return '<div><h3><span>'+e(n.nazwa)+'</span>'+ch+'</h3><div class="konto">'+e(n.konto)+'</div><dl><dt>Najlepsze do</dt><dd>'+e(n.do)+'</dd><dt>Jak wejść</dt><dd>'+e(n.wejscie)+'</dd><dt>Na co uważać</dt><dd>'+e(n.uwaga)+'</dd></dl></div>';
+  }).join("")+'</div>'+
+  '<p style="margin-top:18px;color:var(--granat-1);max-width:75ch">Okno czatu to karoseria, a model to silnik. Pod podobnymi oknami pracują różne modele, dlatego warto znać dwa narzędzia, a nie jedno. Narzędzia zmieniają się z miesiąca na miesiąc – modele, układ okna i nazwy funkcji.</p>';
+};
+
+W.pytania = function(){
+  return '<h1>Pytania</h1><p class="lead">Krótkie odpowiedzi na wątpliwości, które padały najczęściej.</p>'+
+  T.pytania.map(function(p){return '<details><summary><strong>'+e(p.p)+'</strong></summary><div class="wnetrze"><p>'+e(p.o)+'</p></div></details>';}).join("");
+};
+
+/* ---------- wyszukiwanie ---------- */
+function szukaj(fraza){
+  var slowa = norm(fraza).split(/\s+/).filter(Boolean), wyn = [];
+  function ma(t){ t = norm(t); return slowa.every(function(s){return t.indexOf(s)>-1;}); }
+  T.zadania.forEach(function(z){
+    var caly = [z.tytul,z.skrot,z.tagi,z.kolorOpis,z.pulapka,z.sprawdz,z.kroki.join(" "),z.polecenia.map(function(p){return p.nazwa+" "+p.tekst;}).join(" ")].join(" ");
+    if (ma(caly)) wyn.push({w: ma(z.tytul+" "+z.tagi)?0:2, typ:"Zadanie", t:z.tytul, o:z.skrot, h:"#zad-"+z.id});
+  });
+  T.kolory.sytuacje.forEach(function(s){ if (ma(s.t+" "+s.o)) wyn.push({w:1, typ:"Sytuacja · "+KOLOR[s.kolor], t:s.t, o:s.o, h:"#kolory"}); });
+  T.kolory.lista.forEach(function(k){ if (ma(k.punkty.join(" ")+" "+k.uwaga)) wyn.push({w:1, typ:"Trzy kolory", t:k.nazwa+" – "+k.gdzie.toLowerCase(), o:k.punkty.filter(ma)[0]||k.uwaga, h:"#kolory"}); });
+  T.pytania.forEach(function(p){ if (ma(p.p+" "+p.o)) wyn.push({w:3, typ:"Pytanie", t:p.p, o:p.o, h:"#pytania"}); });
+  T.portret.cechy.forEach(function(c){ if (ma(c.cecha+" "+c.regula+" "+c.opis)) wyn.push({w:3, typ:"Jak działa AI", t:c.cecha, o:"→ "+c.regula, h:"#portret"}); });
+  T.polecenie.zwroty.forEach(function(z){ if (ma(z.nazwa+" "+z.tekst)) wyn.push({w:3, typ:"Zwrot do polecenia", t:z.nazwa, o:z.tekst, h:"#polecenie"}); });
+  T.narzedzia.forEach(function(n){ if (ma(n.nazwa+" "+n.do+" "+n.uwaga)) wyn.push({w:4, typ:"Narzędzie", t:n.nazwa, o:n.do, h:"#narzedzia"}); });
+  wyn.sort(function(a,b){return a.w-b.w;});
+  var h = '<h1>Wyniki dla „'+e(fraza)+'”</h1>';
+  if (!wyn.length) return h+'<div class="pusto" style="margin-top:18px">Nic nie znaleziono. Spróbuj krótszego słowa albo przejrzyj <a href="#zadania">wszystkie zadania</a>.</div>';
+  return h+'<p class="lead">'+wyn.length+' '+(wyn.length===1?'wynik':(wyn.length<5?'wyniki':'wyników'))+'</p>'+wyn.map(function(w){
+    return '<a class="wynik" href="'+w.h+'"><small>'+e(w.typ)+'</small><strong>'+e(w.t)+'</strong><span>'+e(w.o.length>190?w.o.slice(0,190)+"…":w.o)+'</span></a>';
+  }).join("");
+}
+
+/* ---------- sterowanie ---------- */
+function trasa(){ var h = (location.hash||"").replace(/^#/,""); return h || "start"; }
+function rysuj(){
+  POL = [];
+  var fraza = q.value.trim(), t = trasa(), akt = t.indexOf("zad-")===0 ? "zadania" : t;
+  document.getElementById("q-x").style.display = fraza ? "block" : "none";
+  if (fraza.length >= 2) { app.innerHTML = szukaj(fraza); akt = ""; }
+  else if (t.indexOf("zad-")===0) app.innerHTML = zadanie(t.slice(4));
+  else app.innerHTML = (W[t]||W.start)();
+  document.getElementById("nav").innerHTML = SEKCJE.map(function(s){
+    return '<a href="#'+s[0]+'"'+(s[0]===akt?' aria-current="page"':'')+'>'+s[1]+'</a>';
+  }).join("");
+}
+function kopiuj(btn){
+  var tekst = POL[+btn.getAttribute("data-i")];
+  function ok(){ btn.textContent = "Skopiowano"; btn.classList.add("ok"); setTimeout(function(){btn.textContent="Kopiuj";btn.classList.remove("ok");},1800); }
+  function zapas(){
+    var ta = document.createElement("textarea"); ta.value = tekst; ta.setAttribute("readonly",""); ta.style.position="absolute"; ta.style.left="-9999px";
+    document.body.appendChild(ta); ta.select(); var udane = false;
+    try { udane = document.execCommand("copy"); } catch(err) {}
+    document.body.removeChild(ta);
+    if (udane) ok(); else {
+      var pre = btn.closest(".pol").querySelector(".pol-t"), r = document.createRange(); r.selectNodeContents(pre);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Ctrl+C";
+      setTimeout(function(){btn.textContent="Kopiuj";},2500);
+    }
+  }
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(tekst).then(ok, zapas); else zapas();
+  } catch(err) { zapas(); }
+}
+document.addEventListener("click", function(ev){
+  var b = ev.target.closest("button");
+  if (b && b.classList.contains("kop")) { kopiuj(b); return; }
+  if (b && b.parentNode.getAttribute("data-f")==="zad") { filtrZad = b.getAttribute("data-v"); rysuj(); return; }
+  if (b && b.parentNode.getAttribute("data-f")==="kol") {
+    filtrKol = b.getAttribute("data-v");
+    Array.prototype.forEach.call(b.parentNode.children, function(x){ x.setAttribute("aria-pressed", x===b); });
+    document.getElementById("syt").innerHTML = sytuacjeHTML(); return;
+  }
+  if (b && b.id==="q-x") { q.value=""; rysuj(); q.focus(); return; }
+  var a = ev.target.closest("a");
+  if (a && a.getAttribute("href") && a.getAttribute("href").charAt(0)==="#" && q.value) {
+    q.value = ""; if (("#"+trasa()) === a.getAttribute("href")) { rysuj(); window.scrollTo(0,0); }
+  }
+});
+document.addEventListener("input", function(ev){
+  if (!T) return;
+  if (ev.target === q) rysuj();
+  if (ev.target.id === "fk") { tekstKol = ev.target.value; document.getElementById("syt").innerHTML = sytuacjeHTML(); }
+});
+window.addEventListener("hashchange", function(){ if (T) { rysuj(); window.scrollTo(0,0); } });
+
+/* ---------- hasło: treść jest zaszyfrowana (AES-GCM), klucz powstaje z hasła ---------- */
+var KLUCZ = "pdn-haslo", brama = document.getElementById("brama-f"), blad = document.getElementById("brama-blad");
+function b64(x){ var b = atob(x), u = new Uint8Array(b.length); for (var i=0;i<b.length;i++) u[i]=b.charCodeAt(i); return u; }
+function czysc(h){ return norm(h).replace(/\s+/g,""); }
+function odszyfruj(haslo){
+  var E = window.TRESC_ENC, c = window.crypto && window.crypto.subtle;
+  if (!E || !c) return Promise.reject(new Error("brak"));
+  return c.importKey("raw", new TextEncoder().encode(czysc(haslo)), "PBKDF2", false, ["deriveKey"]).then(function(k){
+    return c.deriveKey({name:"PBKDF2", salt:b64(E.salt), iterations:E.iter, hash:"SHA-256"}, k, {name:"AES-GCM", length:256}, false, ["decrypt"]);
+  }).then(function(k){ return c.decrypt({name:"AES-GCM", iv:b64(E.iv)}, k, b64(E.data)); })
+    .then(function(buf){ return JSON.parse(new TextDecoder().decode(buf)); });
+}
+function otworz(dane){
+  T = dane; document.body.classList.remove("zamkniete");
+  document.getElementById("stopka").textContent = T.meta.zrodlo + " " + T.meta.ai + " Stan na " + T.meta.stan + ".";
+  rysuj();
+}
+function proba(haslo, cicho){
+  return odszyfruj(haslo).then(function(d){
+    try { localStorage.setItem(KLUCZ, czysc(haslo)); } catch(err) {}
+    otworz(d);
+  }, function(err){
+    if (cicho) return;
+    blad.textContent = err && err.message==="brak" ? "Ta przeglądarka nie może otworzyć przewodnika. Spróbuj w Chrome, Edge albo Safari." : "Hasło się nie zgadza. Spróbuj jeszcze raz.";
+  });
+}
+brama.addEventListener("submit", function(ev){ ev.preventDefault(); blad.textContent = ""; proba(document.getElementById("haslo").value, false); });
+var zapisane = null; try { zapisane = localStorage.getItem(KLUCZ); } catch(err) {}
+if (zapisane) proba(zapisane, true);
+})();
+</script>
+</body>
+</html>
