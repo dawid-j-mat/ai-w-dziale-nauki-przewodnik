@@ -92,6 +92,8 @@ ol.kroki li::before{content:counter(k);position:absolute;left:0;top:1px;width:26
 .ramka{background:var(--szary-pola);padding:14px 16px;margin-bottom:12px}
 .ramka h3{font-size:15px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
 .ramka p{margin:0}
+.pobierz{display:inline-block;background:var(--granat);color:var(--bialy);text-decoration:none;font-weight:700;padding:8px 16px}
+.pobierz:hover{background:var(--granat-biznes)}
 .ramka.pulapka{background:var(--bialy);box-shadow:inset 4px 0 0 var(--bordo),inset 0 0 0 1px var(--linia)}
 .ramka.pulapka h3{color:var(--bordo)}
 .ramka.kolor{background:var(--bialy);box-shadow:inset 0 0 0 1px var(--linia)}
@@ -311,6 +313,7 @@ function zadanie(id){
   '<div class="dwa"><div>'+
     '<div class="ramka kolor"><div class="chipy" style="padding:0 0 8px">'+chipyZadania(z)+'</div><p>'+e(z.kolorOpis)+'</p></div>'+
     '<h2 style="margin:22px 0 12px">Krok po kroku</h2><ol class="kroki">'+z.kroki.map(function(k){return '<li>'+e(k)+'</li>';}).join("")+'</ol>'+
+    (z.plik ? '<div class="ramka kolor"><h3>'+e(z.plik.tytul)+'</h3><ol style="margin:6px 0 10px;padding-left:20px">'+z.plik.kroki.map(function(k){return '<li>'+e(k)+'</li>';}).join("")+'</ol><p><a class="pobierz" href="'+e(z.plik.href)+'" download>'+e(z.plik.przycisk)+'</a></p><p style="font-size:15px;color:var(--granat-1);margin-top:8px">'+e(z.plik.uwaga)+'</p></div>' : '')+
     '<div class="ramka"><h3>Co sprawdzić</h3><p>'+e(z.sprawdz)+'</p></div>'+
     '<div class="ramka pulapka"><h3>Pułapka</h3><p>'+e(z.pulapka)+'</p></div>'+
   '</div><div>'+
